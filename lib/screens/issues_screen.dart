@@ -144,38 +144,7 @@ class IssuesScreen extends StatelessWidget {
     );
   }
 
-  static final List<Issue> _issues = [
-    Issue(
-      issueNumber: "Số 5/2025",
-      title: "Phát triển kỹ năng tư duy phê phán trong giáo dục",
-      publishDate: "15/01/2025",
-      articleCount: 8,
-    ),
-    Issue(
-      issueNumber: "Số 4/2024",
-      title: "Ứng dụng công nghệ AI trong học tập và giảng dạy",
-      publishDate: "01/12/2024",
-      articleCount: 10,
-    ),
-    Issue(
-      issueNumber: "Số 3/2024",
-      title: "Giáo dục bền vững và phát triển con người",
-      publishDate: "15/09/2024",
-      articleCount: 7,
-    ),
-    Issue(
-      issueNumber: "Số 2/2024",
-      title: "Đổi mới phương pháp giảng dạy ở bậc đại học",
-      publishDate: "01/06/2024",
-      articleCount: 9,
-    ),
-    Issue(
-      issueNumber: "Số 1/2024",
-      title: "Định hướng chính sách giáo dục 2024-2025",
-      publishDate: "15/03/2024",
-      articleCount: 11,
-    ),
-  ];
+  static final List<Issue> _issues = [];
 }
 
 class Issue {
