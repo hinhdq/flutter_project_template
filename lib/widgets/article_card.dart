@@ -22,10 +22,10 @@ class ArticleCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(8),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             blurRadius: 4,
             offset: const Offset(0, 2),
-          )
+          ),
         ],
       ),
       child: Column(
@@ -48,7 +48,11 @@ class ArticleCard extends StatelessWidget {
           const SizedBox(height: 6),
           Text(
             title,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, height: 1.3),
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15,
+              height: 1.3,
+            ),
           ),
           const SizedBox(height: 8),
           Row(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 // Import các widget bạn vừa tạo
 import '../widgets/section_header.dart';
 import '../widgets/article_card.dart';
+import 'issues_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -22,12 +23,12 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 12),
-              
+
               // 1. Header (Logo + Tên)
               _buildHeader(),
-              
+
               const SizedBox(height: 16),
-              
+
               // 2. Search Bar (Đã tinh chỉnh)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -37,20 +38,23 @@ class HomeScreen extends StatelessWidget {
                   },
                   decoration: InputDecoration(
                     hintText: 'Tìm kiếm bài viết...',
-                    hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                    hintStyle: TextStyle(
+                      color: Colors.grey.shade500,
+                      fontSize: 14,
+                    ),
                     prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                    
+
                     filled: true,
                     fillColor: Colors.grey.shade100, // Màu nền xám nhẹ hiện đại
-                    
+
                     contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                    
+
                     // Viền khi chưa bấm vào
                     enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
                       borderSide: BorderSide(color: Colors.grey.shade300),
                     ),
-                    
+
                     // Viền khi bấm vào (Màu đỏ)
                     focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(30),
@@ -79,29 +83,45 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 24),
 
               // 4. Mục: Số mới phát hành
-              const SectionHeader(title: 'Số mới phát hành', hasViewAll: true),
+              SectionHeader(
+                title: 'Số mới phát hành',
+                hasViewAll: true,
+                onViewAllTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const IssuesScreen()),
+                  );
+                },
+              ),
               const SizedBox(height: 12),
               _buildFeaturedCard(),
 
               const SizedBox(height: 24),
 
               // 5. Mục: Bài báo Khoa học
-              const SectionHeader(title: 'Bài báo Khoa học', hasViewAll: true, viewAllText: 'Mới nhất'),
-              
+              const SectionHeader(
+                title: 'Bài báo Khoa học',
+                hasViewAll: true,
+                viewAllText: 'Mới nhất',
+              ),
+
               // Danh sách bài báo
               const ArticleCard(
                 category: 'DẠY HỌC',
-                title: 'Dạy học tích hợp trong giáo dục hiện đại: Phân tích xu hướng nghiên cứu',
+                title:
+                    'Dạy học tích hợp trong giáo dục hiện đại: Phân tích xu hướng nghiên cứu',
                 author: 'Lê Thị Hồng Chi',
               ),
               const ArticleCard(
                 category: 'QUẢN LÝ',
-                title: 'Nâng cao chất lượng đội ngũ giảng viên tại các trường đại học sư phạm',
+                title:
+                    'Nâng cao chất lượng đội ngũ giảng viên tại các trường đại học sư phạm',
                 author: 'Nguyễn Văn An',
               ),
               const ArticleCard(
                 category: 'LÝ LUẬN',
-                title: 'Chuyển đổi số trong quản lý giáo dục đại học: Thực trạng và giải pháp',
+                title:
+                    'Chuyển đổi số trong quản lý giáo dục đại học: Thực trạng và giải pháp',
                 author: 'Trần Văn B',
               ),
 
@@ -135,7 +155,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
+
               const SizedBox(height: 100), // Khoảng trống cuối cùng
             ],
           ),
@@ -143,7 +163,6 @@ class HomeScreen extends StatelessWidget {
       ),
     );
   }
-  
 
   // --- CÁC WIDGET CON ---
 
@@ -162,15 +181,12 @@ class HomeScreen extends StatelessWidget {
             ),
             child: Padding(
               padding: const EdgeInsets.all(6.0),
-              child: Image.asset(
-                'assets/images/logo.png',
-                fit: BoxFit.contain,
-              ),
+              child: Image.asset('assets/images/logo.png', fit: BoxFit.contain),
             ),
           ),
-          
+
           const SizedBox(width: 12),
-          
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -196,14 +212,18 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          
+
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.grey.shade50,
             ),
-            child: const Icon(Icons.notifications_none, size: 26, color: Colors.black87),
+            child: const Icon(
+              Icons.notifications_none,
+              size: 26,
+              color: Colors.black87,
+            ),
           ),
         ],
       ),
@@ -226,8 +246,8 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
-          side: isActive 
-              ? BorderSide.none 
+          side: isActive
+              ? BorderSide.none
               : BorderSide(color: Colors.grey.shade300),
         ),
       ),
@@ -242,7 +262,7 @@ class HomeScreen extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16),
           gradient: const LinearGradient(
-            colors: [Color(0xFF505050), Color(0xFF202020)], 
+            colors: [Color(0xFF505050), Color(0xFF202020)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -251,8 +271,8 @@ class HomeScreen extends StatelessWidget {
               color: Colors.black26,
               blurRadius: 8,
               offset: Offset(0, 4),
-            )
-          ]
+            ),
+          ],
         ),
         child: Stack(
           children: [
@@ -264,14 +284,21 @@ class HomeScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8,
+                      vertical: 4,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFF9E1E1E),
                       borderRadius: BorderRadius.circular(6),
                     ),
                     child: const Text(
                       'NỔI BẬT',
-                      style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -310,7 +337,7 @@ class HomeScreen extends StatelessWidget {
         name,
         textAlign: TextAlign.center,
         style: TextStyle(
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.black.withValues(alpha: 0.6),
           fontWeight: FontWeight.bold,
           fontSize: 11,
         ),
